@@ -1,1 +1,1 @@
-# twitter-spell-checking
+# Twitter Spell Checking Project
