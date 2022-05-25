@@ -50,22 +50,32 @@ def main():
 
     if os.path.exists(output_file_path):
         os.remove(output_file_path)
+    
+    iterations_count = 25
+    length = len(subjects)
+    counter = 0 
+    for i in range(iterations_count):
+        for j in range(length):
+            print('----------')
+            print(f"Request #{counter + 1}")
+            params = query_params(subjects[j])
+            json_response = connect_to_endpoint(search_url, params)
+            data = []
+            
+            for tweet in json_response['data']:
+                data.append([tweet['text']])
 
-    for subject in subjects:
-        params = query_params(subject)
-        json_response = connect_to_endpoint(search_url, params)
-        data = []
-        
-        for tweet in json_response['data']:
-            data.append([tweet['text']])
+            with open(output_file_path, 'a', encoding='UTF8', newline='') as file:
+                writer = csv.writer(file, skipinitialspace=True)
+                writer.writerows(data)
+            
+            print('waiting for 10s ...')
+            time.sleep(10)
+            counter += 1
 
-        with open(output_file_path, 'a', encoding='UTF8', newline='') as file:
-            writer = csv.writer(file, skipinitialspace=True)
-            writer.writerows(data)
-
-        print('waiting ...')
-        time.sleep(10)
-
+    print('----------')
+    print(f"Total number of requests: {counter}")
+    print(f'{(counter) * 100} tweets crawled')
 
 if __name__ == '__main__':
     main()
