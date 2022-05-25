@@ -46,7 +46,7 @@ def connect_to_endpoint(url, params):
 
 def main():
 
-    output_file_path = 'data/raw/output.csv'
+    output_file_path = 'data/raw/raw_data.csv'
 
     if os.path.exists(output_file_path):
         os.remove(output_file_path)

@@ -27,7 +27,7 @@ def stopWords(input_str):
 
 def main():
 
-    file = open('output.csv', 'r', encoding='utf-8', errors='ignore')
+    file = open('data/raw/raw_data.csv', 'r', encoding='utf-8', errors='ignore')
     tweets= csv.reader(file)
     s = []
     for tw in tweets:
@@ -39,11 +39,11 @@ def main():
         token = stopWords(tokens)
         s.append([TreebankWordDetokenizer().detokenize(token)])
 
-    with open('cleaned.csv', 'w', encoding='utf-8', newline='') as file:
+    with open('data/cleaned.csv', 'w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(s)
 
-    file1 = open('cleaned.csv', encoding='utf-8', errors='ignore')
+    file1 = open('data/cleaned.csv', encoding='utf-8', errors='ignore')
     read_file = file1.read()
 
     # counts = Counter(word_tokenize(read_file))
