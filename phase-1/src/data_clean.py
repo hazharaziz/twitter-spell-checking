@@ -6,7 +6,10 @@ import matplotlib.pyplot as plt
 from nltk import TreebankWordDetokenizer
 from nltk.corpus import stopwords
 from nltk.tokenize import  word_tokenize
+import nltk
 
+nltk.download('punkt')
+nltk.download('stopwords')
 
 def whiteSpace(input_str):
     return re.sub(' +', ' ', input_str)
@@ -39,11 +42,11 @@ def main():
         token = stopWords(tokens)
         s.append([TreebankWordDetokenizer().detokenize(token)])
 
-    with open('data/cleaned.csv', 'w', encoding='utf-8', newline='') as file:
+    with open('test_data/cleaned.csv', 'w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(s)
 
-    file1 = open('data/cleaned.csv', encoding='utf-8', errors='ignore')
+    file1 = open('test_data/cleaned.csv', encoding='utf-8', errors='ignore')
     read_file = file1.read()
 
     # counts = Counter(word_tokenize(read_file))
