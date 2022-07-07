@@ -2,7 +2,7 @@
 from nltk.tokenize import sent_tokenize, word_tokenize
 import csv
 
-file1 = open('output.csv', encoding='utf-8', errors='ignore')
+file1 = open('test_data/cleaned.csv', encoding='utf-8', errors='ignore')
 read_file = file1.read()
 
 word_token=word_tokenize(read_file)
